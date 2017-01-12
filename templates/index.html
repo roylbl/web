@@ -1,0 +1,16 @@
+$def with(movies)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Crossin's Movie Site</h1>
+    $for movie in movies:
+        <li>
+        $movie['title'],$movie['year']
+        </li>
+</body>
+</html>
