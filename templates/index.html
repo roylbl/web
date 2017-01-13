@@ -8,6 +8,11 @@ $def with(movies)
 </head>
 <body>
     <h1>Crossin's Movie Site</h1>
+    <form action="/" method="post">
+        <input type="text" name="title" />
+        <input type="submit" value="搜索" />
+    </form>
+    <p>影片列表：</p>
     $for movie in movies:
         <li>
             <a href="movie/$movie['id']">$movie['title']</a>
