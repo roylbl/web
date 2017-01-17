@@ -4,10 +4,11 @@ import web
 urls = (
     '/', 'index',
     '/movie/(\d+)', 'movie',
+    '/cast/(.*)', 'cast',
 )
 
 render = web.template.render('templates/')
-db = web.database(dbn='sqlite', db='MovieSite1.db')
+db = web.database(dbn='sqlite', db='MovieSite.db')
 
 class index:
     def GET(self):
@@ -24,6 +25,12 @@ class movie:
         movie_id = int(movie_id)
         movie = db.select('movie', where='id=$movie_id', vars=locals())[0]
         return render.movie(movie)
+
+class cast:
+    def GET(self, cast_name):
+        condition = r'casts like "%' + cast_name + r'%"'
+        movies = db.select('movie', where=condition)
+        return render.index(movies)
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()

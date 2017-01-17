@@ -9,11 +9,15 @@ $def with(movie)
     <h4><a href="/">返回首页</a></h4>
     <h1>$movie.title</h1>
     <hr>
-    <p>海报：$movie.image</p>
+    <img src="/static/poster/$(movie.id).jpg">
     <p>年代：$movie.year</p>
     <p>国家：$movie.countries</p>
     <p>导演：$movie.directors</p>
-    <p>主演：$movie.casts</p>
+    <p>主演：
+        $ casts = movie.casts.split(",")
+        $for cast in casts:
+        <a href="/cast/$cast">$cast</a>
+    </p>
     <p>类型：$movie.genres</p>
     <p>简介：$movie.summary</p>
 
